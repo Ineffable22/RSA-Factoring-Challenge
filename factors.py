@@ -13,7 +13,7 @@ while txt[i]:
 
     while b != line:
         if line % b == 0:
-            print("{} = {} * {}".format(int(line), int(line // b), b))
+            print("{}={}*{}".format(int(line), int(line // b), b))
             break
         b += 1
     i += 1
