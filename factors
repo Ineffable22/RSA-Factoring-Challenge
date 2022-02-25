@@ -11,7 +11,7 @@ check()
                 do
                         if [ $count -gt 1 ];
                         then
-                                num2=$(echo $a*$num2 | bc)
+                                num2=$(echo "$a*$num2" | bc)
                         fi
                         count=$((count + 1))
                 done
@@ -38,7 +38,7 @@ then
         exit 1
 else
 
-        while read i
+        while read -r i
         do
 
                 result=$(factor "$i")
