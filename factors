@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
+# Factorize all the things!
 check()
 {
-        if [ $# -ne 3 ];
+	if [ $# -ne 3 ];
         then
                 args=("$@")
                 count=0
@@ -17,22 +18,31 @@ check()
         else
                 num2=$3
         fi
+
         num1=$2
         num=$(echo "$1" | tr ':' '=')
+
         result=$(echo "if($num2 > $num1) 1 else 0" | bc)
-                if ((result == 1)); then
-                        numcp=$num1
-                        num1=$num2
-                        num2=$numcp
+	        if ((result == 1)); then
+		        numcp=$num1
+		        num1=$num2
+		        num2=$numcp
                 fi
+
         echo "$num$num1*$num2"
 }
 
+if [ $# -ne 1 ]
+then
+        echo 'Usage: factors <file>'
+        exit 1
+else
 
+        while read i
+        do
 
-filename=$1
-while read -r line
-do
-    value=$(factor "$line")
-    check $value
-done < $filename
+                result=$(factor "$i")
+                check $result
+
+        done < "$1"
+fi
